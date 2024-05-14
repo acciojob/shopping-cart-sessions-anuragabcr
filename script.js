@@ -23,7 +23,7 @@ function renderProducts() {
 
 // Render cart list
 function renderCart() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
   cartList.innerHTML = "";
   cart.forEach((item) => {
     const li = document.createElement("li");
@@ -35,17 +35,17 @@ function renderCart() {
 function addToCart(productId) {
   const product = products.find((item) => item.id === productId);
   if (product) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
     const newProduct = { ...product };
     cart.push(newProduct);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    sessionStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
   }
 }
 
 // Clear cart
 function clearCart() {
-  localStorage.removeItem("cart");
+  sessionStorage.removeItem("cart");
   renderCart();
 }
 
