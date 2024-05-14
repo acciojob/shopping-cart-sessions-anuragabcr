@@ -36,14 +36,8 @@ function addToCart(productId) {
   const product = products.find((item) => item.id === productId);
   if (product) {
     let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
-    const existingProduct = cart.find((item) => item.id === productId);
-    if (existingProduct) {
-      //   existingProduct.quantity += 1;
-    } else {
-      // Create a new copy of the product object and add a quantity property
-      const newProduct = { ...product };
-      cart.push(newProduct);
-    }
+    const newProduct = { ...product };
+    cart.push(newProduct);
     sessionStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
   }
