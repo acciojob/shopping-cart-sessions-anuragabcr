@@ -16,7 +16,7 @@ const clearCartBtn = document.getElementById("clear-cart-btn");
 function renderProducts() {
   products.forEach((product) => {
     const li = document.createElement("li");
-    li.innerHTML = ${product.name} - $${product.price} <button class="add-to-cart-btn" data-id="${product.id}">Add to Cart</button>;
+    li.innerHTML = `${product.name} - ${product.price} <button class="add-to-cart-btn" data-id="${product.id}">Add to Cart</button>`;
     productList.appendChild(li);
   });
 }
@@ -27,7 +27,7 @@ function renderCart() {
   cartList.innerHTML = "";
   cart.forEach((item) => {
     const li = document.createElement("li");
-    li.textContent = ${item.name} - $${item.price} x ${item.quantity};
+    li.textContent = `${item.name} - $${item.price} x ${item.quantity}`;
     cartList.appendChild(li);
   });
 }
@@ -38,10 +38,10 @@ function addToCart(productId) {
     let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
     const existingProduct = cart.find((item) => item.id === productId);
     if (existingProduct) {
-      existingProduct.quantity += 1;
+      //   existingProduct.quantity += 1;
     } else {
       // Create a new copy of the product object and add a quantity property
-      const newProduct = { ...product, quantity: 1 };
+      const newProduct = { ...product };
       cart.push(newProduct);
     }
     sessionStorage.setItem("cart", JSON.stringify(cart));
